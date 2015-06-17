@@ -6,7 +6,7 @@ require 'parse_provision_profile/version'
 Gem::Specification.new do |spec|
   spec.name          = "parse_provision_profile"
   spec.version       = ParseProvisionProfile::VERSION
-  spec.authors       = ["Bhakta"]
+  spec.authors       = ["Bhakta Ranjan Satapathy"]
   spec.email         = ["bhakta98rta@gmail.com"]
   spec.summary       = "Gem to parse provision profile"
   spec.description   = "Gem to parse provision profile"
@@ -20,9 +20,6 @@ Gem::Specification.new do |spec|
 
   spec.add_development_dependency "bundler", "~> 1.7"
   spec.add_development_dependency "rake", "~> 10.0"
-  spec.add_development_dependency "openssl"
-  spec.add_development_dependency "rexml/document"
-  spec.add_development_dependency "getoptlong"
-  spec.add_development_dependency "plist"
-  spec.add_development_dependency "colorize"
+  spec.add_dependency "plist"
+  spec.add_dependency "colorize"
 end
