@@ -1,0 +1,35 @@
+#!/usr/bin/env ruby
+
+require 'parse_provision_profile'
+
+def console_error(text)
+	puts "[ERROR] #{text}".red
+end
+
+def console_info(text)
+	puts "[INFO] #{text}".green
+end
+
+opt = GetoptLong.new(
+	["--profile", "-p", GetoptLong::REQUIRED_ARGUMENT]
+)
+
+@options = Hash.new
+	opt.each do |name, arg|
+	@options[name] = arg
+end
+
+if @options["--profile"].nil? or not File.exists?(@options["--profile"])
+	console_error("Kindly provide the provisioning profile file.")
+	exit 2
+end
+
+profile = ParseProvisionProfile::Entitlement.get(@options["--profile"])
+entitlements_data = profile['Entitlements'].to_plist
+dest_path = ''
+File.open("Entitlements.plist", 'w') do |f| 
+	f.write(entitlements_data)
+	dest_path = "#{Dir.pwd}/#{f.path}"
+end
+
+console_info("File got generated at #{dest_path}")
